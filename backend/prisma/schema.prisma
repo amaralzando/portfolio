@@ -1,0 +1,37 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+}
+
+model Tecnologia {
+  id          Int @id @default(autoincrement())
+  nome        String
+  descricao   String
+  imagem      String
+  destaque    Boolean @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @default(now())
+  projetos Projetos[]
+ 
+  @@map("tecnologias")
+}
+
+model Projetos {
+  id Int @id @default(autoincrement())
+  nome String
+  descricao String
+  imagens String[]
+  nivel Int
+  tipo String
+  destaque Boolean @default(false)
+  repositorio String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+  tecnologias Tecnologia[]
+
+  @@map("projetos")
+}
