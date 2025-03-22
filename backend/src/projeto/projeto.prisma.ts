@@ -7,17 +7,33 @@ export class ProjetoPrisma {
 	constructor(private readonly prisma: PrismaProvider) {}
 
 	async obterTodosProjetos(): Promise<Projeto[]> {
-		return this.prisma.projetos.findMany() as any;
+		const projetos = await this.prisma.projetos.findMany();
+		return ajustarImagensProjetos(projetos);
 	}
 
 	async obterPorId(id: number): Promise<Projeto | null> {
-		return this.prisma.projetos.findMany({
+		const projeto = await this.prisma.projetos.findUnique({
 			where: {
-				id,
+				id: Number(id),
 			},
 			include: {
 				tecnologias: true,
 			},
-		}) as any;
+		});
+		console.log(projeto);
+
+		return ajustarImagensProjeto(projeto);
 	}
+}
+
+function ajustarImagensProjetos(projetos: any[]): any[] {
+	return projetos.map((projeto) => ajustarImagensProjeto(projeto));
+}
+
+function ajustarImagensProjeto(projeto: any): any {
+	if (projeto && projeto.imagens && projeto.imagens.length > 0) {
+		const imagens = JSON.parse(projeto.imagens[0]);
+		projeto.imagens = imagens;
+	}
+	return projeto;
 }
