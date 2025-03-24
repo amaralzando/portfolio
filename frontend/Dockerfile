@@ -2,14 +2,14 @@ FROM node:20-alpine
 
 WORKDIR /app
 
-# Cache de dependências
-COPY package*.json ./
-RUN npm ci
+COPY package.json package-lock.json ./
 
-# Código fonte
+RUN npm cache clean --force && \
+    npm ci --production && \
+    npm cache clean --force
+
 COPY . .
 
-# Build e execução
 RUN npm run build
 
 EXPOSE 3001
