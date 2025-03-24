@@ -2,10 +2,14 @@ FROM node:20-alpine
 
 WORKDIR /app
 
-COPY backend/package*.json ./
+# Cache de dependências
+COPY package*.json ./
 RUN npm ci
 
-COPY backend/. .
+# Código fonte
+COPY . .
+
+# Build e execução
 RUN npm run build
 
 EXPOSE 4001
