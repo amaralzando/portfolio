@@ -7,8 +7,7 @@ COPY backend/package*.json ./
 RUN npm ci
 
 COPY backend/. .
-RUN npx prisma generate \
-    && npm run build \
+RUN npm run build \
     && npm prune --omit=dev
 
 # --- Frontend Build ---
