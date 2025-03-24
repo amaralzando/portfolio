@@ -27,7 +27,7 @@
         "./src/*"
       ],
       "@core": [
-        "../core/src"
+        "/core/src"
       ]
     }
   },
