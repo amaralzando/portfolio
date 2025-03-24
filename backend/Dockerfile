@@ -2,19 +2,22 @@ FROM node:20-alpine
 
 WORKDIR /app
 
-# Primeiro copia apenas os arquivos de dependência
+# Etapa de construção (builder) para instalar dependências de desenvolvimento
+FROM node:20-alpine AS builder
+WORKDIR /app
 COPY package.json package-lock.json ./
-
-# Limpa cache e instala dependências
-RUN npm cache clean --force && \
-    npm ci --production && \
-    npm cache clean --force
-
-# Depois copia o resto do código
+RUN npm ci
 COPY . .
-
 RUN npm run build
+
+# Etapa final de produção
+FROM node:20-alpine
+WORKDIR /app
+COPY --from=builder /app/package*.json ./
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/dist ./dist
 
 EXPOSE 4001
 
-CMD ["node", "dist/backend/src/main.js"]
+# 5. Define o comando de produção
+CMD ["npm", "run", "start:prod"]
