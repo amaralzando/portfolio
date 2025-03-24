@@ -1,7 +1,7 @@
-POST https://n8n.gasatec.com.br/webhook-test/f6adef63169a93a45b04db6cccbe34cd
+POST https://n8n.gasatec.com.br/webhook/eb56c1f9-86f6-4a08-baa3-39c9b71b10ab
 Content-Type: application/json
 
 {
   "chatId": "123456",
-  "mensagem": "Voce trabalha com desenvolvimento de software para mobile ??"
+  "mensagem": "oi"
 }

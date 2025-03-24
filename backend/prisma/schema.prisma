@@ -35,3 +35,42 @@ model Projetos {
 
   @@map("projetos")
 }
+
+// model Tecnologia {
+//   id          Int                 @id @default(autoincrement())
+//   nome        String
+//   descricao   String
+//   imagem      String
+//   destaque    Boolean             @default(false)
+//   createdAt   DateTime            @default(now())
+//   updatedAt   DateTime            @default(now())
+//   projetosTec ProjetosTecnologia[]
+
+//   @@map("tecnologias")
+// }
+
+// model Projetos {
+//   id          Int                 @id @default(autoincrement())
+//   nome        String
+//   descricao   String
+//   imagens     String[]
+//   nivel       Int
+//   tipo        String
+//   destaque    Boolean             @default(false)
+//   repositorio String
+//   createdAt   DateTime            @default(now())
+//   updatedAt   DateTime            @default(now())
+//   projetosTec ProjetosTecnologia[]
+
+//   @@map("projetos")
+// }
+
+// model ProjetosTecnologia {
+//   projetoId   Int
+//   tecnologiaId Int
+//   projeto     Projetos  @relation(fields: [projetoId], references: [id])
+//   tecnologia  Tecnologia @relation(fields: [tecnologiaId], references: [id])
+
+//   @@id([projetoId, tecnologiaId])
+//   @@map("projetos_tecnologia")
+// }
