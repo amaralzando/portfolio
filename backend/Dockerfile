@@ -2,16 +2,16 @@ FROM node:20-alpine AS builder
 
 WORKDIR /app
 
-# 1. Copia os arquivos de configuração do back-end
+# 1. Copia os arquivos de configuração do backend
 COPY package.json package-lock.json tsconfig.json ./
 
-# 2. Instala TODAS as dependências (incluindo devDependencies)
+# 2. Instala dependências
 RUN npm ci
 
-# 3. Copia o core primeiro
+# 3. Copia o core (caminho relativo ao contexto)
 COPY ../core ./core
 
-# 4. Copia todo o código fonte do back-end
+# 4. Copia o código do backend
 COPY . .
 
 # 5. Executa o build

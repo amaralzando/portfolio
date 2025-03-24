@@ -23,6 +23,8 @@ services:
             context: ./frontend
         ports:
             - '3001:3001'
+        volumes:
+            - ./core:/app/core
         environment:
             - NODE_ENV=production
             - NEXT_PUBLIC_API_URL=http://localhost:4001

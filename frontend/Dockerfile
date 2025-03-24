@@ -1,14 +1,20 @@
 FROM node:20-alpine AS builder
-WORKDIR /web
+WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm ci
+
+# Copia o core
+COPY ../core ./core
+
+# Copia o frontend
 COPY . .
+
 RUN npm run build
 
-# Etapa final com NGINX
 FROM nginx:alpine
-COPY --from=builder /web/out /usr/share/nginx/html
+COPY --from=builder /app/out /usr/share/nginx/html
 COPY nginx.conf /etc/nginx/conf.d/default.conf
+
 EXPOSE 3001
 
 CMD ["npm", "run", "start"]
