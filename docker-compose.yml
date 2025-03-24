@@ -9,6 +9,8 @@ services:
         environment:
             - NODE_ENV=production
             - DATABASE_URL=${DATABASE_URL}
+        volumes:
+            - ./core:/app/core # Monta o core como volume
         restart: unless-stopped
         healthcheck:
             test: ['CMD', 'curl', '-f', 'http://localhost:5001/health']

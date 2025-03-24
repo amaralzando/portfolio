@@ -7,12 +7,10 @@
   "license": "UNLICENSED",
   "scripts": {
     "build": "nest build",
-    "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "start:dev": "nest start --watch --entryFile backend/src/main",
     "start:dev2": "nest start --watch",
-    "start:debug": "nest start --debug --watch",
-    "start:prod": "node dist/backend/src/main.js"
+    "start:prod": "node dist/backend/src/main"
   },
   "dependencies": {
     "@nestjs/common": "^11.0.1",
