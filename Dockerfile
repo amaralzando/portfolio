@@ -7,7 +7,7 @@ WORKDIR /app/core
 COPY core/package*.json ./
 
 # Instala as dependências do core
-RUN npm ci
+RUN npm install
 
 # Copia o restante dos arquivos do core
 COPY core/. .
