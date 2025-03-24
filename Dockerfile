@@ -3,11 +3,11 @@ FROM node:20-alpine AS core-builder
 
 WORKDIR /app/core
 
-# Copia os arquivos de configuração do core
-COPY core/package*.json ./
+# # Copia os arquivos de configuração do core
+# COPY core/package*.json ./
 
-# Instala as dependências do core
-RUN npm install
+# # Instala as dependências do core
+# RUN npm install
 
 # Copia o restante dos arquivos do core
 COPY core/. .
