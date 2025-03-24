@@ -23,7 +23,7 @@ services:
             - '3001:3001'
         environment:
             - NODE_ENV=production
-            - API_URL=http://backend:4001
+            - NEXT_PUBLIC_API_URL=http://localhost:4001
             - CHAT_WEBHOOK=${CHAT_WEBHOOK}
         depends_on:
             backend:
