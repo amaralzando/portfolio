@@ -1,7 +1,7 @@
 # --- Core Build ---
 FROM node:20-alpine AS core-builder
 
-WORKDIR /core
+WORKDIR /app/core
 
 # Copia os arquivos de configuração do core
 COPY core/package*.json ./
@@ -15,7 +15,7 @@ COPY core/. .
 # --- Backend Build ---
 FROM node:20-alpine AS backend-builder
 
-WORKDIR /backend
+WORKDIR /app/backend
 
 # Copia as dependências do backend
 COPY backend/package*.json ./
@@ -32,7 +32,7 @@ RUN npm run build \
 # --- Frontend Build ---
 FROM node:20-alpine AS frontend-builder
 
-WORKDIR /frontend
+WORKDIR /app/frontend
 
 COPY frontend/package*.json ./
 RUN npm ci
