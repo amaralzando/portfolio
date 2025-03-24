@@ -1,37 +1,45 @@
-FROM node:20-alpine as builder
+# --- Backend Build ---
+FROM node:20-alpine as backend-builder
 
-ENV NODE_ENV build
+WORKDIR /app/backend
 
-USER node
-
-# WORKDIR /home/node/core
-# COPY core/*.json ./
-# RUN npm ci
-
-WORKDIR /home/node/backend
-
-COPY backend/*.json ./
+COPY backend/package*.json ./
 RUN npm ci
 
-WORKDIR /home/node
-COPY --chown=node:node . .
-
-WORKDIR /home/node/backend
+COPY backend/. .
 RUN npx prisma generate \
     && npm run build \
     && npm prune --omit=dev
 
-# ---
+# --- Frontend Build ---
+FROM node:20-alpine as frontend-builder
 
+WORKDIR /app/frontend
+
+COPY frontend/package*.json ./
+RUN npm ci
+
+COPY frontend/. .
+RUN npm run build
+
+# --- Final Stage (Multi-Stage Build) ---
 FROM node:20-alpine
 
-ENV NODE_ENV production
+WORKDIR /app
 
-USER node
-WORKDIR /home/node
+# Copy Backend
+COPY --from=backend-builder /app/backend/package*.json ./backend/
+COPY --from=backend-builder /app/backend/node_modules/ ./backend/node_modules/
+COPY --from=backend-builder /app/backend/dist/ ./backend/dist/
 
-COPY --from=builder --chown=node:node /home/node/backend/package*.json ./
-COPY --from=builder --chown=node:node /home/node/backend/node_modules/ ./node_modules/
-COPY --from=builder --chown=node:node /home/node/backend/dist/ ./dist/
+# Copy Frontend
+COPY --from=frontend-builder /app/frontend/.next ./frontend/.next
+COPY --from=frontend-builder /app/frontend/public ./frontend/public
+COPY --from=frontend-builder /app/frontend/package*.json ./frontend/
 
-CMD ["node", "dist/backend/src/main.js"]
+# Expose Ports (Coliffy will manage routing)
+EXPOSE 3001
+EXPOSE 4001
+
+# Start Backend and Frontend
+CMD ["sh", "-c", "cd backend && node dist/backend/src/main.js & cd ../frontend && npm start -- --port 3001"]
