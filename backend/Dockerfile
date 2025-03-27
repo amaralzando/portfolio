@@ -4,7 +4,8 @@ WORKDIR /app
 
 # Copia os arquivos do backend e do core
 COPY package.json package-lock.json tsconfig.json ./
-COPY ../core ./core  
+COPY ../core /app/core
+
 
 RUN npm ci
 
