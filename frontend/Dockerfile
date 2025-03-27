@@ -5,7 +5,7 @@ COPY package.json package-lock.json ./
 RUN npm ci
 
 # Copia o frontend e o core
-COPY core ./core  
+COPY ../core ./core  
 COPY . .
 
 RUN npm run build

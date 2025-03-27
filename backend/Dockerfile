@@ -4,7 +4,7 @@ WORKDIR /app
 
 # Copia os arquivos do backend e do core
 COPY package.json package-lock.json tsconfig.json ./
-COPY core ./core  
+COPY ../core ./core  
 
 RUN npm ci
 
@@ -20,7 +20,7 @@ WORKDIR /app
 COPY --from=builder /app/package*.json ./ 
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/dist ./dist
-COPY --from=builder /app/core ./core 
+COPY --from=builder /app/core ./core  
 
 EXPOSE 4001
 

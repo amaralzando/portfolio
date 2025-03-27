@@ -4,16 +4,15 @@ services:
     backend:
         build:
             context: ./backend
+            dockerfile: Dockerfile
         ports:
             - '4001:4001'
         environment:
             - NODE_ENV=production
             - DATABASE_URL=${DATABASE_URL}
         restart: unless-stopped
-        volumes:
-            - ./core:/app/core
         healthcheck:
-            test: ['CMD', 'curl', '-f', 'http://localhost:5001/health']
+            test: ['CMD', 'curl', '-f', 'http://localhost:4001/health']
             interval: 30s
             timeout: 10s
             retries: 3
@@ -21,6 +20,7 @@ services:
     frontend:
         build:
             context: ./frontend
+            dockerfile: Dockerfile
         ports:
             - '3001:3001'
         environment:
@@ -31,5 +31,3 @@ services:
             backend:
                 condition: service_healthy
         restart: unless-stopped
-        volumes:
-            - ./core:/app/core
