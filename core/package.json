@@ -1,11 +1,9 @@
 {
-	"name": "core",
-	"version": "1.0.0",
-	"main": "src/index.ts",
-	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
-	},
-	"author": "Gabriel Andrade",
-	"license": "ISC",
-	"description": ""
+  "name": "core",
+  "version": "1.0.0",
+  "main": "src/index.ts",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
 }

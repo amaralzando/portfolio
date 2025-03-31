@@ -1,7 +1,7 @@
-POST https://n8n.gasatec.com.br/webhook/eb56c1f9-86f6-4a08-baa3-39c9b71b10ab
+POST https://suporteformacaodev.app.n8n.cloud/webhook/assistente-pessoal
 Content-Type: application/json
 
 {
-  "chatId": "123456",
-  "mensagem": "oi"
+  "chatId": "12345678",
+  "mensagem": "Você trabalha com React Native?"
 }

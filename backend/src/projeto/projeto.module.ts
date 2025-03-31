@@ -1,11 +1,11 @@
-import { Module } from '@nestjs/common';
-import { DbModule } from 'src/db/db.module';
-import { ProjetoController } from './projeto.controller';
-import { ProjetoPrisma } from './projeto.prisma';
+import { Module } from "@nestjs/common"
+import { ProjetoPrisma } from "./projeto.prisma"
+import { ProjetoController } from "./projeto.controller"
+import { DbModule } from "src/db/db.module"
 
 @Module({
-	controllers: [ProjetoController],
 	providers: [ProjetoPrisma],
+	controllers: [ProjetoController],
 	imports: [DbModule],
 })
 export class ProjetoModule {}

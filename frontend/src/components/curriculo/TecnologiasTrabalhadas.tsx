@@ -1,23 +1,20 @@
-import { Tecnologia } from '@core';
+import { Tecnologia } from "@core"
 
 export interface TecnologiasTrabalhadasProps {
-	lista: Tecnologia[];
+	lista: Tecnologia[]
 }
 
 export default function TecnologiasTrabalhadas(props: TecnologiasTrabalhadasProps) {
 	return props.lista ? (
-		<div className="flex justify-center items-center p-6 lg:w-80 bg-black rounded-2xl border-zinc-800 border-2">
-			<div className="flex flex-wrap justify-center gap-1 items-center">
+		<div className="flex justify-center items-center p-6 w-full lg:w-72 bg-black border border-zinc-800 rounded-2xl">
+			<div className="flex justify-center gap-x-3 flex-wrap">
 				{props.lista.map((tecnologia) => (
-					<div
-						key={tecnologia.id}
-						className="flex flex-wrap items-center justify-center  gap-1 "
-					>
+					<div key={tecnologia.id}>
 						<span className="text-red-500 font-bold">#</span>
-						<span className="text-sm">{tecnologia.nome}</span>
+						<span>{tecnologia.nome}</span>
 					</div>
 				))}
 			</div>
 		</div>
-	) : null;
+	) : null
 }

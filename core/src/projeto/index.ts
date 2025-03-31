@@ -1,6 +1,6 @@
-import { Nivel } from './Nivel'
-import Projeto from './Projeto'
-import { Tipo } from './Tipo'
+import { Nivel } from "./Nivel"
+import { Tipo } from "./Tipo"
+import Projeto from "./Projeto"
 
-export type { Projeto }
 export { Nivel, Tipo }
+export type { Projeto }

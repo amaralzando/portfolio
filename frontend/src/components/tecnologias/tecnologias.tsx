@@ -1,9 +1,9 @@
-import { Tecnologia } from '@core';
-import Image from 'next/image';
+import { Tecnologia } from "@core"
+import Image from "next/image"
 
 export interface TecnologiasProps {
-	lista: Tecnologia[];
-	tamanhoMenor?: boolean;
+	lista: Tecnologia[]
+	tamanhoMenor?: boolean
 }
 
 export default function Tecnologias(props: TecnologiasProps) {
@@ -14,7 +14,7 @@ export default function Tecnologias(props: TecnologiasProps) {
 					<span
 						className={`
 							relative h-11 w-11 rounded-xl overflow-hidden
-							${!props.tamanhoMenor && 'sm:h-16 sm:w-16'}
+							${!props.tamanhoMenor && "sm:h-16 sm:w-16"}
 						`}
 					>
 						<Image
@@ -24,9 +24,9 @@ export default function Tecnologias(props: TecnologiasProps) {
 							className="object-contain"
 						/>
 					</span>
-					<span className="text-[10px] text-zinc-500">{tecnologia.nome}</span>
+					<span className="text-[10px] text-zinc-400">{tecnologia.nome}</span>
 				</div>
 			))}
 		</div>
-	) : null;
+	) : null
 }

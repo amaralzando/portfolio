@@ -1,4 +1,4 @@
-import BotaoChat from '@/components/chat/BotaoChat';
+import BotaoChat from "@/components/chat/BotaoChat"
 
 export default function Layout(props: { children: React.ReactNode }) {
 	return (
@@ -6,5 +6,5 @@ export default function Layout(props: { children: React.ReactNode }) {
 			{props.children}
 			<BotaoChat />
 		</div>
-	);
+	)
 }

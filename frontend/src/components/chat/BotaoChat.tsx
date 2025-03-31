@@ -1,6 +1,6 @@
-import Image from 'next/image';
-import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover';
-import JanelaChat from './JanelaChat';
+import Image from "next/image"
+import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover"
+import JanelaChat from "./JanelaChat"
 
 export default function BotaoChat() {
 	return (
@@ -15,9 +15,10 @@ export default function BotaoChat() {
 				align="end"
 				sideOffset={10}
 				className="w-[400px] sm:w-[500px]"
+				style={{ backgroundColor: "transparent", border: "none" }}
 			>
 				<JanelaChat />
 			</PopoverContent>
 		</Popover>
-	);
+	)
 }

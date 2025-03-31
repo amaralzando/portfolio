@@ -1,3 +1,3 @@
-import Tecnologia from './Tecnologia'
+import Tecnologia from "./Tecnologia"
 
 export type { Tecnologia }

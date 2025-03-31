@@ -1,23 +1,23 @@
-'use client';
-import useChat from '@/hooks/useChat';
-import { IconMessages, IconReload, IconSend } from '@tabler/icons-react';
-import Image from 'next/image';
-import { ChangeEvent, KeyboardEvent, useEffect, useRef, useState } from 'react';
-import BalaoMensagem from './BalaoMensagem';
+"use client"
+import { ChangeEvent, KeyboardEvent, useEffect, useRef, useState } from "react"
+import { IconMessages, IconReload, IconSend } from "@tabler/icons-react"
+import useChat from "@/hooks/useChat"
+import BalaoMensagem from "./BalaoMensagem"
+import Image from "next/image"
 
 export default function JanelaChat() {
-	const { mensagens, pensando, adicionarMensagem, limparMensagens } = useChat();
-	const [texto, setTexto] = useState('');
-	const fimChatRef = useRef<HTMLDivElement>(null);
+	const { mensagens, pensando, adicionarMensagem, limparMensagens } = useChat()
+	const [texto, setTexto] = useState("")
+	const fimChatRef = useRef<HTMLDivElement>(null)
 
 	function enviarMensagem() {
-		adicionarMensagem(texto);
-		setTexto('');
+		adicionarMensagem(texto)
+		setTexto("")
 	}
 
 	useEffect(() => {
-		fimChatRef.current?.scrollIntoView({ behavior: 'smooth' });
-	}, [mensagens]);
+		fimChatRef.current?.scrollIntoView({ behavior: "smooth" })
+	}, [mensagens])
 
 	return (
 		<div className="flex flex-col bg-zinc-300 rounded-2xl text-black overflow-hidden">
@@ -37,14 +37,14 @@ export default function JanelaChat() {
 			) : (
 				<div className="flex flex-col p-2 gap-2 min-h-[400px] sm:min-h-[500px] max-h-[400px] sm:max-h-[500px] overflow-y-scroll">
 					{mensagens.map((mensagem, i) => {
-						const mesmoAutor = i > 0 && mensagens[i - 1].autor === mensagem.autor;
+						const mesmoAutor = i > 0 && mensagens[i - 1].autor === mensagem.autor
 						return (
 							<BalaoMensagem
 								key={mensagem.id}
 								mensagem={mensagem}
 								omitirAutor={mesmoAutor}
 							/>
-						);
+						)
 					})}
 					{pensando && (
 						<Image src="/pensando.gif" alt="Pensando" width={50} height={50} />
@@ -59,10 +59,10 @@ export default function JanelaChat() {
 					value={texto}
 					className="flex-1 bg-transparent h-8 outline-none pl-3"
 					onChange={(e: ChangeEvent<HTMLInputElement>) => {
-						setTexto(e.target.value);
+						setTexto(e.target.value)
 					}}
 					onKeyDown={(e: KeyboardEvent<HTMLInputElement>) => {
-						if (e.key === 'Enter') enviarMensagem();
+						if (e.key === "Enter") enviarMensagem()
 					}}
 				/>
 				<button
@@ -73,5 +73,5 @@ export default function JanelaChat() {
 				</button>
 			</div>
 		</div>
-	);
+	)
 }

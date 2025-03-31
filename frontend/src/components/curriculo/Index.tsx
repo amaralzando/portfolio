@@ -1,10 +1,10 @@
-import { Tecnologia } from '@core';
-import Experiencia from './Experiencia';
-import MiniCV from './MiniCV';
-import TecnologiasTrabalhadas from './TecnologiasTrabalhadas';
+import { Tecnologia } from "@core"
+import TecnologiasTrabalhadas from "./TecnologiasTrabalhadas"
+import Experiencia from "./Experiencia"
+import MiniCV from "./MiniCV"
 
 export interface CurriculoProps {
-	tecnologias: Tecnologia[];
+	tecnologias: Tecnologia[]
 }
 
 export default function Curriculo(props: CurriculoProps) {
@@ -14,5 +14,5 @@ export default function Curriculo(props: CurriculoProps) {
 			<Experiencia />
 			<TecnologiasTrabalhadas lista={props.tecnologias} />
 		</div>
-	);
+	)
 }

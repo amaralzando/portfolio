@@ -1,3 +1,3 @@
-import Id from './id'
+import Id from "./Id"
 
 export { Id }

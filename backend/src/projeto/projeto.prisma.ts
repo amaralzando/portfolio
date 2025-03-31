@@ -1,39 +1,19 @@
-import { Projeto } from '@core';
-import { Injectable } from '@nestjs/common';
-import { PrismaProvider } from 'src/db/prisma.provider';
+import { Projeto } from "@core"
+import { Injectable } from "@nestjs/common"
+import { PrismaProvider } from "src/db/prisma.provider"
 
 @Injectable()
 export class ProjetoPrisma {
 	constructor(private readonly prisma: PrismaProvider) {}
 
-	async obterTodosProjetos(): Promise<Projeto[]> {
-		const projetos = await this.prisma.projetos.findMany();
-		return ajustarImagensProjetos(projetos);
+	async obterTodos(): Promise<Projeto[]> {
+		return this.prisma.projeto.findMany() as any
 	}
 
 	async obterPorId(id: number): Promise<Projeto | null> {
-		const projeto = await this.prisma.projetos.findUnique({
-			where: {
-				id: Number(id),
-			},
-			include: {
-				tecnologias: true,
-			},
-		});
-		console.log(projeto);
-
-		return ajustarImagensProjeto(projeto);
+		return this.prisma.projeto.findUnique({
+			where: { id },
+			include: { tecnologias: true },
+		}) as any
 	}
-}
-
-function ajustarImagensProjetos(projetos: any[]): any[] {
-	return projetos.map((projeto) => ajustarImagensProjeto(projeto));
-}
-
-function ajustarImagensProjeto(projeto: any): any {
-	if (projeto && projeto.imagens && projeto.imagens.length > 0) {
-		const imagens = JSON.parse(projeto.imagens[0]);
-		projeto.imagens = imagens;
-	}
-	return projeto;
 }
