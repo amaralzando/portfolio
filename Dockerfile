@@ -19,7 +19,7 @@ RUN npx prisma generate && npm run build
 FROM node:20-alpine
 
 ENV NODE_ENV=production
-EXPOSE 3000
+EXPOSE 4001
 
 WORKDIR /home/gasa/portifolio/backend
 
